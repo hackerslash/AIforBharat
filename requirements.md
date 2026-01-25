@@ -17,6 +17,8 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 - **Primary**: Reduce agricultural input costs through bulk procurement
 - **Secondary**: Minimize environmental impact (waste reduction, carbon emissions)
 - **Tertiary**: Enable digital inclusion for low-literacy farmers via voice-first interface
+- **Quaternary**: Embed transparent pricing, traceable sourcing, and group-level accountability to prevent fraud using a community-driven verification system.
+
 
 ### 1.3 Success Metrics
 - **Economic**: 10-25% cost reduction for farmers

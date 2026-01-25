@@ -60,6 +60,11 @@ AgriSetu creates **virtual farmer collectives** through AI-driven demand aggrega
 - 40-50% reduction in logistics emissions
 - Better crop yields through quality inputs
 
+**Trust & Accountability:**
+- The platform embeds transparent pricing, traceable sourcing, and group-level accountability to prevent fraud.
+- A community-driven verification system allows farmers to share usage experiences and flag suspicious products, creating a self-reinforcing, trust-based shield against counterfeit inputs and unfair pricing.
+
+
 ---
 
 ## 3. Strategic Alignment with Government Initiatives
