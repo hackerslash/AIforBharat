@@ -314,7 +314,7 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 ### 3.7 Maintainability
 - **NFR-32**: Code coverage >80% (unit + integration tests)
 - **NFR-33**: API documentation via Swagger/OpenAPI
-- **NFR-34**: Centralized logging (CloudWatch/GCP Logging)
+- **NFR-34**: Centralized logging (CloudWatch)
 - **NFR-35**: Error tracking (Sentry)
 - **NFR-36**: CI/CD pipeline (GitHub Actions)
 
@@ -441,7 +441,7 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 - Amazon Transcribe and Polly enabled
 - Razorpay/PhonePe UPI gateway integration
 - Government vendor database (CSV/API)
-- Cloud hosting approval (AWS/GCP or MeghRaj)
+- Cloud hosting approval (AWS)
 
 ---
 

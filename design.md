@@ -953,7 +953,7 @@ Farmer App                Auth Service             UIDAI
   - Aadhaar hash (SHA-256)
   - Bank account details
   - Payment transactions
-- **Secrets Management**: AWS Secrets Manager / GCP Secret Manager
+- **Secrets Management**: AWS Secrets Manager 
 
 ### 6.3 Access Control (RBAC)
 

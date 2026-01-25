@@ -374,7 +374,7 @@ For each clustered demand:
 - **Aadhaar eKYC**: DigiLocker API / UIDAI Sandbox
 
 ### Deployment
-- **Cloud**: AWS / GCP / Azure (or MeghRaj for govt compliance)
+- **Cloud**: AWS
 - **Demo**: Vercel (frontend), Railway/Render (backend)
 - **Database**: Supabase / Neon (managed PostgreSQL)
 
@@ -382,7 +382,7 @@ For each clustered demand:
 - **Compute**: AWS Fargate (Serverless Containers)
 - **CI/CD**: GitHub Actions
 - **Monitoring**: Sentry (error tracking), Posthog (analytics)
-- **Logging**: CloudWatch / GCP Logging
+- **Logging**: CloudWatch
 
 ---
 
