@@ -44,13 +44,13 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 
 #### FR-2: Voice-First Interface
 - **FR-2.1**: Multilingual voice input support (Hindi, Kannada, Tamil, Telugu, Bengali, Marathi, Gujarati, Punjabi, Odia, Malayalam)
-- **FR-2.2**: Speech-to-Text conversion using Web Speech API or Deepgram
-- **FR-2.3**: Natural Language Processing via BharatGPT to extract:
+- **FR-2.2**: Speech-to-Text conversion using Amazon Transcribe
+- **FR-2.3**: Natural Language Processing via BharatGPT (deployed using Amazon Bedrock) to extract:
   - Crop type (e.g., Tomato, Wheat, Rice)
   - Input type (Seeds, Fertilizer, Pesticide, Equipment)
   - Quantity (kg/liters/units)
   - Preferred delivery date
-- **FR-2.4**: Text-to-Speech confirmation via ElevenLabs
+- **FR-2.4**: Text-to-Speech confirmation via Amazon Polly
 - **FR-2.5**: Fallback to text input if voice fails
 - **FR-2.6**: Auto-detect user language from device settings
 
@@ -274,7 +274,7 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 - **NFR-6**: Horizontal scaling for backend services
 - **NFR-7**: Database sharding for 1M+ farmers
 - **NFR-8**: CDN for app assets (images, audio)
-- **NFR-9**: Auto-scaling based on traffic (AWS ECS/GCP Cloud Run)
+- **NFR-9**: Auto-scaling based on traffic (AWS Fargate)
 
 ### 3.3 Security
 - **NFR-10**: HTTPS encryption for all API calls
@@ -290,7 +290,7 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 - **NFR-18**: 99.5% uptime SLA (MVP phase)
 - **NFR-19**: Automated database backups (daily)
 - **NFR-20**: Disaster recovery plan (RPO: 24 hours, RTO: 4 hours)
-- **NFR-21**: Graceful degradation if external APIs fail (BharatGPT, ElevenLabs)
+- **NFR-21**: Graceful degradation if external APIs fail (BharatGPT/Bedrock, Amazon Polly)
 
 ### 3.5 Usability
 - **NFR-22**: Voice-first interface for low-literacy users
@@ -323,12 +323,12 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 ### 4.1 Platform Constraints
 - **TC-1**: Farmer app must support Android 8.0+ and iOS 13+
 - **TC-2**: Vendor dashboard must support Chrome, Firefox, Safari (latest 2 versions)
-- **TC-3**: Backend must be deployable on AWS/GCP/Azure or MeghRaj (govt cloud)
+- **TC-3**: Backend must be deployable on AWS Fargate
 
 ### 4.2 Integration Constraints
 - **TC-4**: UIDAI Aadhaar API (Sandbox for MVP, Production post-approval)
-- **TC-5**: BharatGPT API rate limits (TBD - check with provider)
-- **TC-6**: ElevenLabs API limits (25K characters/month on free tier)
+- **TC-5**: Amazon Bedrock service quotas for BharatGPT
+- **TC-6**: Amazon Polly quotas (standard vs neural engine limits)
 - **TC-7**: UPI payment gateway (Razorpay: 2% transaction fee)
 
 ### 4.3 Data Constraints
@@ -428,15 +428,15 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 - Farmers have Aadhaar-linked bank accounts
 - Farmers have smartphones with internet connectivity (4G)
 - UPI payment gateway approval obtained for escrow model
-- BharatGPT and ElevenLabs APIs are production-ready
+- BharatGPT and Amazon Polly APIs are production-ready
 
 ---
 
 ## 9. Dependencies
 
 - UIDAI Aadhaar API access (sandbox for MVP)
-- BharatGPT API license
-- ElevenLabs API subscription
+- AWS Account with access to Amazon Bedrock (BharatGPT models)
+- Amazon Transcribe and Polly enabled
 - Razorpay/PhonePe UPI gateway integration
 - Government vendor database (CSV/API)
 - Cloud hosting approval (AWS/GCP or MeghRaj)
@@ -447,7 +447,7 @@ Enable small and marginal farmers (86% of Indian farmers) to access affordable a
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| BharatGPT API downtime | High | Fallback to Google Translate API + manual correction |
+| Amazon Bedrock/BharatGPT downtime | High | Fallback to Google Translate API + manual correction |
 | Low farmer smartphone adoption | Medium | Partner with local Kisan Seva Kendras for assisted ordering |
 | Vendor reluctance to join | High | Government mandate for vendors in pilot districts |
 | UPI payment failures | Medium | Retry mechanism + SMS fallback for payment links |

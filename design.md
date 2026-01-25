@@ -72,9 +72,9 @@
               ┌───────────────▼───────────────┐
               │    EXTERNAL INTEGRATIONS       │
               ├────────────────────────────────┤
-              │ UIDAI     BharatGPT  ElevenLabs│
-              │ (Aadhaar) (NLP)      (TTS)     │
-              │                                │
+              │ UIDAI     BharatGPT  Amazon    │
+              │ (Aadhaar) (Bedrock)  Polly/    │
+              │                      Transcribe│
               │ Razorpay  Twilio     WhatsApp  │
               │ (UPI)     (SMS)      (Notify)  │
               └────────────────────────────────┘
@@ -118,9 +118,9 @@ MVP integrates directly with UIDAI Aadhaar for authentication. Full AgriStack in
 - Audit logs
 
 **6. AI/ML Service** (Port 8006)
-- Voice-to-Text (Web Speech API/Deepgram)
-- Text-to-Voice (ElevenLabs)
-- NLP (BharatGPT)
+- Voice-to-Text (Amazon Transcribe)
+- Text-to-Voice (Amazon Polly)
+- NLP (BharatGPT on Amazon Bedrock)
 - Clustering algorithms (K-means, DBSCAN)
 
 ---
@@ -968,6 +968,7 @@ Farmer App                Auth Service             UIDAI
 ## 7. Deployment Architecture
 
 ### 7.1 Infrastructure (AWS)
+- **Compute**: AWS Fargate (Serverless ECS for Microservices)
 
 ```
               [CloudFront CDN]
@@ -1009,7 +1010,7 @@ Farmer App                Auth Service             UIDAI
 |-------------|---------|----------------|
 | **Development** | Local testing | Docker Compose |
 | **Staging** | Pre-production testing | AWS (t3.medium) |
-| **Production** | Live deployment | AWS (t3.large, auto-scaling) |
+| **Production** | Live deployment | AWS Fargate (Serverless Containers) |
 
 ---
 

@@ -6,7 +6,7 @@ AgriSetu is a mobile-first, AI-powered platform that enables virtual farmer coll
 
 **Key Differentiators:**
 - Government vendor integration (no cold-start problem)
-- Voice-first multilingual interface (BharatGPT + ElevenLabs)
+- Voice-first multilingual interface (BharatGPT + Amazon Polly/Transcribe)
 - AI-driven demand clustering and vendor matching
 - UPI-based payments with future KCC/DBT integration
 - AgriStack-compliant and NABARD-aligned
@@ -115,9 +115,9 @@ AgriSetu creates **virtual farmer collectives** through AI-driven demand aggrega
 
 2. **Voice-First Interface**
    - Multilingual support: Hindi, Kannada, Tamil, Telugu, Bengali, etc.
-   - Speech-to-Text: Web Speech API / Deepgram
+   - Speech-to-Text: Amazon Transcribe
    - Natural language processing: BharatGPT
-   - Text-to-Speech: ElevenLabs
+   - Text-to-Speech: Amazon Polly
    - Low-literacy friendly design
 
 3. **Request Submission**
@@ -355,8 +355,8 @@ For each clustered demand:
 - **Cache**: Redis (real-time tracking, session management)
 
 ### AI/ML
-- **Voice-to-Text**: Web Speech API / Deepgram
-- **Text-to-Voice**: ElevenLabs API
+- **Voice-to-Text**: Amazon Transcribe
+- **Text-to-Voice**: Amazon Polly
 - **Language Processing**: BharatGPT API
 - **Clustering**: Scikit-learn (K-means, DBSCAN)
 - **Vendor Matching**: Custom weighted scoring algorithm
@@ -374,6 +374,7 @@ For each clustered demand:
 - **Database**: Supabase / Neon (managed PostgreSQL)
 
 ### DevOps
+- **Compute**: AWS Fargate (Serverless Containers)
 - **CI/CD**: GitHub Actions
 - **Monitoring**: Sentry (error tracking), Posthog (analytics)
 - **Logging**: CloudWatch / GCP Logging
