@@ -121,7 +121,7 @@ AgriSetu creates **virtual farmer collectives** through AI-driven demand aggrega
 2. **Voice-First Interface**
    - Multilingual support: Hindi, Kannada, Tamil, Telugu, Bengali, etc.
    - Speech-to-Text: Amazon Transcribe
-   - Natural language processing: BharatGPT
+   - Natural language processing: BharatGPT (deployed using Amazon Bedrock)
    - Text-to-Speech: Amazon Polly
    - Low-literacy friendly design
 
@@ -362,7 +362,7 @@ For each clustered demand:
 ### AI/ML
 - **Voice-to-Text**: Amazon Transcribe
 - **Text-to-Voice**: Amazon Polly
-- **Language Processing**: BharatGPT API
+- **Language Processing**: BharatGPT (deployed using Amazon Bedrock)
 - **Clustering**: Scikit-learn (K-means, DBSCAN)
 - **Vendor Matching**: Custom weighted scoring algorithm
 
@@ -375,7 +375,6 @@ For each clustered demand:
 
 ### Deployment
 - **Cloud**: AWS
-- **Demo**: Vercel (frontend), Railway/Render (backend)
 - **Database**: Supabase / Neon (managed PostgreSQL)
 
 ### DevOps
