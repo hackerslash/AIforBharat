@@ -1,0 +1,171 @@
+# Dependencies
+node_modules/
+node_modules
+*.tgz
+
+# Environment variables
+.env*
+!.env.example
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+.directory
+.Trashes
+*.nfs
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.nuxt/
+.output/
+.svelte-kit/
+
+# Expo / React Native
+.expo/
+.expo-shared/
+node_modules/
+*.log
+.bunfig.toml
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp.cjs
+.pnp.loader.mjs
+.expo
+.webpack
+metro.config.js
+babel.config.js
+*.met
+*.patch
+*.swp
+
+# Android
+android/app/build/
+android/.gradle/
+android/build/
+android/local.properties
+
+# iOS
+ios/build/
+ios/Pods/
+ios/Podfile.lock
+ios/fastlane/report.xml
+ios/*.mobileprovision
+ios/Pods/
+ios/build/
+ios/*.xcworkspace
+
+# Next.js
+.next/
+out/
+.next/**
+!.next/cache
+
+# TypeScript
+*.tsbuildinfo
+*.js.map
+*.jsx.map
+*.ts.map
+*.tsx.map
+
+# VSCode
+.vscode/*
+
+# Idea
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Temporary folders
+tmp/
+temp/
+
+# System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Turborepo
+.turbo/
+
+# Expo Router
+.expo-shared/
+
+# React Native
+*.apk
+*.aab
+*.ipa
+
+# Sensitive files
+secrets/
+creds/
+keys/
+*.pem
+*.key
+*.p12
+*.pfx
+*.p7b
+*.crt
+*.cer
+*.der
+
+# Local development settings
+.settings/
+*.local
+
+# Documentation
+docs/_build/
+*.tmp
+*.tmp.*
+
+# Ignore Metro logs
+__tests__/*/native/__snapshots__/
+__tests__/*/web/__snapshots__/
+
+# Ignore generated files
+ios/Pods/
+android/app/src/main/assets/
+android/app/src/main/jniLibs/
+
+# Expo Updates
+.expo/
+.expo-shared/
+
+# Bundles
+*.bundle
+*.tar.gz
+
+# Cache directories
+.cache/
+.nyc_output/
+
+# Lock files for package managers other than the one being used
+yarn.lock
+pnpm-lock.yaml

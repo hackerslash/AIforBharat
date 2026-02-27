@@ -1,0 +1,27 @@
+{
+  "name": "agrisetu",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "packageManager": "npm@10.8.2",
+  "dependencies": {
+    "@next/font": "^14.2.15",
+    "@react-native-community/cli-server-api": "^20.1.2",
+    "expo-constants": "~16.0.0",
+    "expo-dev-client": "~4.0.29",
+    "expo-linking": "~6.3.0",
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}

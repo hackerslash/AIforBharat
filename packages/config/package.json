@@ -1,0 +1,10 @@
+{
+  "name": "config",
+  "version": "1.0.0",
+  "private": true,
+  "files": [
+    "eslint.config.mjs",
+    "tailwind.config.js",
+    "tsconfig.json"
+  ]
+}
