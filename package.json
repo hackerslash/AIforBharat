@@ -13,15 +13,14 @@
   "devDependencies": {
     "turbo": "latest"
   },
-  "packageManager": "npm@10.8.2",
   "dependencies": {
-    "@next/font": "^14.2.15",
-    "@react-native-community/cli-server-api": "^20.1.2",
-    "expo-constants": "~16.0.0",
-    "expo-dev-client": "~4.0.29",
-    "expo-linking": "~6.3.0",
-    "next": "^16.1.6",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "packageManager": "npm@10.8.2",
+  "overrides": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   }
 }

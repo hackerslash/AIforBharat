@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
-import { useTheme } from 'nativewind';
-import { ShieldCheck, Sprout, MessageSquare, Users, Package, MapPin, Wallet, Layers, Globe, Bell, User, ChevronRight } from 'lucide-react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { ShieldCheck, Sprout } from 'lucide-react-native';
 import { useFonts } from 'expo-font';
-
-const { width } = Dimensions.get('window');
 
 export default function LandingScreen() {
   const [selectedLanguage, setSelectedLanguage] = useState('en');
@@ -28,7 +25,7 @@ export default function LandingScreen() {
     { code: 'en', name: 'English', active: selectedLanguage === 'en' },
   ];
 
-  const handleLanguageSelect = (langCode) => {
+  const handleLanguageSelect = (langCode: string) => {
     setSelectedLanguage(langCode);
   };
 

@@ -25,7 +25,7 @@ export default function VendorLoginPage() {
           
           <div>
             <h2 className="text-white text-[44px] font-bold leading-[1.15]" style={{ fontFamily: 'PlusJakartaSans-Bold' }}>
-              Grow your business<br />with India's farmers.
+              Grow your business<br />with India&apos;s farmers.
             </h2>
             <p className="text-white text-opacity-70 text-lg mt-4 leading-relaxed">
               Join 200+ verified vendors supplying quality agricultural inputs to farmer clusters across India. Bid on bulk orders, get guaranteed payments via escrow.
@@ -51,7 +51,7 @@ export default function VendorLoginPage() {
           
           <div className="flex items-center gap-2 text-white text-opacity-70 text-sm">
             <ShieldCheck size={16} className="text-white text-opacity-70" />
-            <p>Government-verified vendors only · AgriStack compliant · NABARD-aligned</p>
+            <p>Government-verified vendors only | AgriStack compliant | NABARD-aligned</p>
           </div>
         </div>
       </div>
@@ -156,5 +156,4 @@ export default function VendorLoginPage() {
     </div>
   );
 }
-
 

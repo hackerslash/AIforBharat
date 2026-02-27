@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import type { Route } from 'next';
 import { LayoutDashboard, Briefcase, Package, IndianRupee, TrendingUp, Settings, Sprout, Calendar, Bell, User } from 'lucide-react';
 
 export default function VendorLayout({
@@ -11,7 +12,7 @@ export default function VendorLayout({
 }) {
   const pathname = usePathname();
 
-  const navItems = [
+  const navItems: Array<{ href: Route; label: string; icon: typeof LayoutDashboard }> = [
     { href: '/vendor/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/vendor/gigs', label: 'Gigs', icon: Briefcase },
     { href: '/vendor/orders', label: 'Orders', icon: Package },
