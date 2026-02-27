@@ -6,13 +6,63 @@ Paste the entire content below into a code-generation AI to scaffold the complet
 
 ## PROMPT
 
-You are an expert React Native + Expo developer. Build the complete frontend for **AgriSetu** — a collective farming input procurement platform for Indian farmers, with a separate web-based vendor portal.
+You are an expert full-stack developer specialising in React Native (Expo) and Next.js. Build the complete frontend for **AgriSetu** — a collective farming input procurement platform for Indian farmers, with a separate web-based vendor portal — inside a **Turborepo monorepo**.
+
+---
+
+## MONOREPO ARCHITECTURE
+
+The project is structured as a **Vercel Turborepo** monorepo. Scaffold it using the official Turborepo boilerplate (`npx create-turbo@latest`) and customise the workspace layout as follows:
+
+```
+agrisetu/                          ← repo root
+├── turbo.json                     ← Turborepo pipeline config
+├── package.json                   ← root workspace (workspaces: ["apps/*", "packages/*"])
+├── apps/
+│   ├── mobile/                    ← React Native + Expo (farmer app)
+│   ├── web/                       ← Next.js (vendor portal)
+│   └── api/                       ← Python Flask backend (placeholder — do NOT scaffold yet)
+└── packages/
+    ├── ui/                        ← shared component stubs (optional, for future use)
+    └── config/                    ← shared tsconfig, eslint, tailwind base config
+```
+
+> **Scope for this prompt**: scaffold only `apps/mobile` and `apps/web`. Leave `apps/api` as an empty directory with a single `README.md` that says "Flask API — coming soon."
+
+### Turborepo pipeline (`turbo.json`)
+```json
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": { "dependsOn": ["^build"], "outputs": [".next/**", "dist/**"] },
+    "dev":   { "cache": false, "persistent": true },
+    "lint":  { "outputs": [] }
+  }
+}
+```
+
+### Root `package.json` (workspaces)
+```json
+{
+  "name": "agrisetu",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev":   "turbo run dev",
+    "build": "turbo run build",
+    "lint":  "turbo run lint"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  }
+}
+```
 
 ---
 
 ## TECH STACK
 
-### Farmer Mobile App (React Native + Expo)
+### `apps/mobile` — Farmer Mobile App (React Native + Expo)
 - **Framework**: React Native with Expo SDK (latest)
 - **Styling**: NativeWind (Tailwind CSS for React Native) — use `className` props throughout
 - **Navigation**: Expo Router (file-based routing with `app/` directory)
@@ -25,10 +75,14 @@ You are an expert React Native + Expo developer. Build the complete frontend for
 - **OTP Input**: Custom 6-box OTP component
 - **Progress Bar**: Custom via `View` width percentage
 
-### Vendor Portal (React Native Web / Expo for Web)
-- Same Expo project, web target
-- **Layout**: Sidebar + main area (1440px wide desktop layout)
-- **Charts**: `victory-native` bar chart for monthly revenue
+### `apps/web` — Vendor Portal (Next.js)
+- **Framework**: Next.js 14+ (App Router)
+- **Styling**: Tailwind CSS
+- **Icons**: `lucide-react`
+- **Charts**: `recharts` (bar chart for monthly revenue)
+- **Fonts**: `next/font` — `Plus Jakarta Sans` + `Inter` from Google Fonts
+- **State**: React Context + `useState`/`useReducer`
+- **Layout**: Sidebar (240px) + main content area (1440px desktop reference)
 
 ---
 
@@ -513,9 +567,9 @@ Tap any card → navigate to Screen 14 (Track Order).
 
 ## VENDOR PORTAL — COMPLETE SCREEN SPECIFICATION
 
-The vendor portal is a **web app** (Expo web target or React Native Web). All screens are desktop layout: 1440×900px, sidebar width 240px.
+The vendor portal lives in `apps/web` and is a **Next.js App Router** web app. All screens are desktop layout: 1440×900px reference, sidebar width 240px. Use Tailwind CSS classes throughout (no `className` React Native style — standard HTML + Tailwind).
 
-### Global Vendor Layout
+### Global Vendor Layout (`apps/web/app/vendor/layout.tsx`)
 - **Sidebar** (`bg-[#FFFFFF]` w-60 h-screen, `justify-between`, padding 32/0/28/0):
   - Top: Logo row (`sprout` icon 26px green + "AgriSetu" Plus Jakarta Sans 18px bold + "Vendor" sub 11px gray)
   - Nav items (h-11, `rounded-xl`, padding 0/14, `flex-row items-center gap-2.5`):
@@ -537,7 +591,7 @@ The vendor portal is a **web app** (Expo web target or React Native Web). All sc
 ---
 
 ### VENDOR SCREEN 1 — Login Page
-**Route**: `app/vendor/login.tsx` (or `/vendor/login` in web router)
+**Route**: `apps/web/app/vendor/login/page.tsx`
 
 **Layout**: Two-column full screen (50/50):
 
@@ -570,7 +624,7 @@ The vendor portal is a **web app** (Expo web target or React Native Web). All sc
 ---
 
 ### VENDOR SCREEN 2 — Dashboard
-**Route**: `app/vendor/dashboard.tsx`
+**Route**: `apps/web/app/vendor/dashboard/page.tsx`
 
 Uses Global Vendor Layout (sidebar + top bar). Dashboard tab active.
 
@@ -590,7 +644,7 @@ Uses Global Vendor Layout (sidebar + top bar). Dashboard tab active.
 3. **Mid Row** (fill height, 2 columns with gap 16):
    - **Monthly Revenue Chart** (`bg-[#FFFFFF] rounded-2xl p-5`, fill remaining width):
      - Title "Monthly Revenue" + "Revenue (₹)" legend (green dot)
-     - Bar chart: 6 bars (Jun–Nov) using `victory-native` `VictoryBar`, bars `fill="#2C5F2D"`, `cornerRadius 8` top
+     - Bar chart: 6 bars (Jun–Nov) using `recharts` `BarChart` + `Bar`, bars `fill="#2C5F2D"`, `radius [8,8,0,0]`
      - Bar heights approximate: Jun 112, Jul 148, Aug 126, Sep 168, Oct 152, Nov 180
    - **Recent Orders** card (width 340, `bg-[#FFFFFF] rounded-2xl p-5`):
      - "Recent Orders" + "View all →" (justify-between)
@@ -611,7 +665,7 @@ Uses Global Vendor Layout (sidebar + top bar). Dashboard tab active.
 ---
 
 ### VENDOR SCREEN 3 — Gigs (Bid Management)
-**Route**: `app/vendor/gigs.tsx`
+**Route**: `apps/web/app/vendor/gigs/page.tsx`
 
 Uses Global Vendor Layout. Gigs tab active.
 
@@ -625,7 +679,7 @@ Uses Global Vendor Layout. Gigs tab active.
 ---
 
 ### VENDOR SCREEN 4 — Orders List
-**Route**: `app/vendor/orders.tsx`
+**Route**: `apps/web/app/vendor/orders/page.tsx`
 
 Uses Global Vendor Layout. Orders tab active.
 
@@ -639,7 +693,7 @@ Uses Global Vendor Layout. Orders tab active.
 ---
 
 ### VENDOR SCREEN 5 — Payments
-**Route**: `app/vendor/payments.tsx`
+**Route**: `apps/web/app/vendor/payments/page.tsx`
 
 Uses Global Vendor Layout. Payments tab active.
 
@@ -651,13 +705,13 @@ Uses Global Vendor Layout. Payments tab active.
 ---
 
 ### VENDOR SCREEN 6 — Analytics
-**Route**: `app/vendor/analytics.tsx`
+**Route**: `apps/web/app/vendor/analytics/page.tsx`
 
 Uses Global Vendor Layout. Analytics tab active.
 
 **Content** (padding 28/32):
 - Date range picker
-- Revenue trend chart (line chart via `victory-native`)
+- Revenue trend chart (line chart via `recharts` `LineChart`)
 - Top products bar chart
 - District-wise sales heatmap placeholder
 - Rating trend over time
@@ -666,8 +720,10 @@ Uses Global Vendor Layout. Analytics tab active.
 
 ## NAVIGATION STRUCTURE
 
+### `apps/mobile` — Expo Router file-based routes
+
 ```
-app/
+apps/mobile/app/
 ├── index.tsx                  ← Screen 1: Landing & Login
 ├── auth/
 │   ├── phone.tsx              ← Screen 2: Phone Login
@@ -688,25 +744,39 @@ app/
 │   └── [id]/
 │       ├── track.tsx          ← Screen 14: Track Order
 │       └── rate.tsx           ← Screen 16: Rate & Delivered
-├── payment/
-│   ├── index.tsx              ← Screen 11: Secure Payment
-│   ├── waiting.tsx            ← Screen 12: Payment Waiting
-│   ├── success.tsx            ← Screen 13: All Paid
-│   └── failed.tsx             ← Screen 13a: Failed
+└── payment/
+    ├── index.tsx              ← Screen 11: Secure Payment
+    ├── waiting.tsx            ← Screen 12: Payment Waiting
+    ├── success.tsx            ← Screen 13: All Paid
+    └── failed.tsx             ← Screen 13a: Failed
+```
+
+### `apps/web` — Next.js App Router routes
+
+```
+apps/web/app/
+├── page.tsx                   ← redirect to /vendor/login
 └── vendor/
-    ├── login.tsx              ← Vendor Login
-    ├── dashboard.tsx          ← Vendor Dashboard
-    ├── gigs.tsx               ← Vendor Gigs
-    ├── orders.tsx             ← Vendor Orders
-    ├── payments.tsx           ← Vendor Payments
-    └── analytics.tsx          ← Vendor Analytics
+    ├── layout.tsx             ← Global sidebar + top bar layout
+    ├── login/
+    │   └── page.tsx           ← Vendor Login
+    ├── dashboard/
+    │   └── page.tsx           ← Vendor Dashboard
+    ├── gigs/
+    │   └── page.tsx           ← Vendor Gigs
+    ├── orders/
+    │   └── page.tsx           ← Vendor Orders
+    ├── payments/
+    │   └── page.tsx           ← Vendor Payments
+    └── analytics/
+        └── page.tsx           ← Vendor Analytics
 ```
 
 ---
 
 ## CONTEXT / STATE MANAGEMENT
 
-Create the following contexts in `context/`:
+Create the following contexts in `apps/mobile/context/`:
 
 ```typescript
 // AppContext.tsx
@@ -749,7 +819,9 @@ interface ClusterState {
 
 ## PACKAGES TO INSTALL
 
+### `apps/mobile` (Expo)
 ```bash
+cd apps/mobile
 npx expo install \
   expo-router \
   expo-av \
@@ -761,9 +833,19 @@ npx expo install \
   lucide-react-native \
   nativewind \
   tailwindcss \
-  victory-native \
   @expo-google-fonts/inter \
   @expo-google-fonts/plus-jakarta-sans
+```
+
+### `apps/web` (Next.js)
+```bash
+cd apps/web
+npm install \
+  lucide-react \
+  recharts \
+  tailwindcss \
+  postcss \
+  autoprefixer
 ```
 
 ---
@@ -817,8 +899,7 @@ const minutes = Math.floor((timeLeft % 3600) / 60);
 const seconds = timeLeft % 60;
 ```
 
-### NativeWind Setup
-In `tailwind.config.js`:
+### NativeWind Setup (`apps/mobile/tailwind.config.js`)
 ```js
 module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
@@ -926,8 +1007,9 @@ export const MOCK_ORDER = {
 3. **Voice must use device microphone** — `expo-av` Audio.Recording, not a web API.
 4. **Multilingual UI** — store active language in context, UI labels are placeholder English but the language-switch UI must be functional.
 5. **Pixel-accurate colors** — use exact hex values from the color palette above.
-6. **Both farmer app + vendor portal in one Expo project** — use platform detection or route separation.
+6. **Monorepo separation** — farmer app lives in `apps/mobile` (Expo), vendor portal in `apps/web` (Next.js). They are separate apps sharing only config packages.
 7. **No TypeScript errors** — full type safety with proper interfaces.
-8. **No external UI libraries** — only NativeWind + lucide-react-native + victory-native (for charts only).
-9. **Responsive tab bar** — always visible on all tabbed screens, correct active tab highlighted.
+8. **No external UI libraries** — `apps/mobile`: only NativeWind + lucide-react-native; `apps/web`: only Tailwind + lucide-react + recharts (charts only).
+9. **Responsive tab bar** — always visible on all tabbed screens in the mobile app, correct active tab highlighted.
 10. **Generate all files** — do not skip any screen; produce complete, runnable code for every route listed in the navigation structure.
+11. **`apps/api` placeholder only** — create the directory with a single `README.md` ("Flask API — coming soon."). Do not scaffold any Python code.
