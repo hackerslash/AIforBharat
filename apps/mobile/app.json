@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "AgriSetu",
+    "slug": "agrisetu-mobile",
+    "scheme": "agrisetu",
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "orientation": "portrait",
+    "userInterfaceStyle": "light"
+  }
+}

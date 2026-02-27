@@ -1,0 +1,14 @@
+{
+  "name": "agrisetu",
+  "private": true,
+  "packageManager": "npm@10.9.0",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "turbo run dev --filter=./apps/* --filter=./packages/*",
+    "build": "turbo run build --filter=./apps/* --filter=./packages/*",
+    "lint": "turbo run lint --filter=./apps/* --filter=./packages/*"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  }
+}
